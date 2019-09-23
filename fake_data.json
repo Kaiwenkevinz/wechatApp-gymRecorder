@@ -1,0 +1,125 @@
+{
+    "name": "Jack1",
+    "join_date": "2019-10-10",
+    "train_data": [
+      {
+        "date": "2019-10-10",
+        "content": [
+          {
+            "movement": "哑铃卧推",
+            "data": [
+              {
+                "number": "1",
+                "count": "12",
+                "weight": "50"
+              },
+              {
+                "number": "2",
+                "count": "10",
+                "weight": "45"
+              }
+            ]
+          },
+          {
+            "movement": "绳索飞鸟",
+            "data": [
+              {
+                "number": "1",
+                "count": "12",
+                "weight": "20"
+              },
+              {
+                "number": "2",
+                "count": "8",
+                "weight": "10"
+              }
+            ]
+          } 
+        ]
+      }
+    ]
+  }
+
+{
+"name": "Jack2",
+"join_date": "2019-10-10",
+"train_data": [
+    {
+    "date": "2019-10-10",
+    "content": [
+        {
+        "movement": "哑铃卧推",
+        "data": [
+            {
+            "number": "1",
+            "count": "12",
+            "weight": "50"
+            },
+            {
+            "number": "2",
+            "count": "10",
+            "weight": "45"
+            }
+        ]
+        },
+        {
+        "movement": "绳索飞鸟",
+        "data": [
+            {
+            "number": "1",
+            "count": "12",
+            "weight": "20"
+            },
+            {
+            "number": "2",
+            "count": "8",
+            "weight": "10"
+            }
+        ]
+        } 
+    ]
+    }
+]
+}
+
+{
+"name": "Jack3",
+"join_date": "2019-10-10",
+"train_data": [
+    {
+    "date": "2019-10-10",
+    "content": [
+        {
+        "movement": "哑铃卧推",
+        "data": [
+            {
+            "number": "1",
+            "count": "12",
+            "weight": "50"
+            },
+            {
+            "number": "2",
+            "count": "10",
+            "weight": "45"
+            }
+        ]
+        },
+        {
+        "movement": "绳索飞鸟",
+        "data": [
+                {
+            "number": "1",
+            "count": "12",
+            "weight": "20"
+            },
+            {
+            "number": "2",
+            "count": "8",
+            "weight": "10"
+            }
+        ]
+        } 
+    ]
+    }
+]
+}
