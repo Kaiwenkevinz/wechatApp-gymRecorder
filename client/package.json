@@ -1,0 +1,23 @@
+{
+  "name": "wechatapp-gymrecorder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "vant-weapp": "^1.0.0-beta.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kaiwenkevinz/wechatApp-gymRecorder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kaiwenkevinz/wechatApp-gymRecorder/issues"
+  },
+  "homepage": "https://github.com/Kaiwenkevinz/wechatApp-gymRecorder#readme"
+}
