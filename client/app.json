@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/index2/index2"
+    "pages/history/index",
+    "pages/user/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -20,7 +21,10 @@
         "pagePath": "pages/index/index"
       },
       {
-        "pagePath": "pages/index2/index2"
+        "pagePath": "pages/history/index"
+      },
+      {
+        "pagePath": "pages/user/index"
       }
     ]
   },

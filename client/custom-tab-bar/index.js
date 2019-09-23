@@ -4,14 +4,19 @@ Component({
     list: [
       {
         icon: 'home-o',
-        text: '示例1',
+        text: '首页',
         url: '/pages/index/index'
       },
       {
         icon: 'search',
-        text: '示例2',
-        url: '/pages/index2/index2'
-      }
+        text: '历史',
+        url: '/pages/history/index'
+      },
+      {
+        icon: 'friends-o',
+        text: '我的',
+        url: '/pages/user/index'
+      },
     ]
   },
 

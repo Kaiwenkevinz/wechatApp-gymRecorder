@@ -1,4 +1,7 @@
-.intro {
-  margin: 30px;
+/* pages/index/index.wxss */
+
+.btn_start {
+  padding-top: 500px;
   text-align: center;
 }
+

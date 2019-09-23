@@ -1,4 +1,4 @@
-// pages/user/index.js
+// pages/history/index.js
 Page({
 
   /**
