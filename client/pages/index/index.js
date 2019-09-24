@@ -62,5 +62,9 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onClickButton: function (e) {
+    console.log(e.currentTarget.dataset.bindex)
   }
 })

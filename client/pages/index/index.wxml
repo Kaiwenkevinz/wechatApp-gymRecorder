@@ -1,16 +1,20 @@
 <view class="container"> 
-  <van-row gutter="16">
-    <van-col span="10">
-      <van-button type="default" size="normal">默认按钮</van-button>
-    </van-col>
-    <van-col span="10">
-      <van-button type="default" size="normal">默认按钮</van-button>
-    </van-col>
-  </van-row>
 
-  <!-- <view class="btn_start"> -->
-    <!-- <van-button type="info" size="large">
-      开始训练
-    </van-button> -->
-  <!-- </view> -->
+<!-- <van-grid>
+  <van-grid-item icon="photo-o" text="文字" />
+  <van-grid-item icon="photo-o" text="文字" />
+  <van-grid-item icon="photo-o" text="文字" />
+  <van-grid-item icon="photo-o" text="文字" />
+</van-grid> -->
+<van-grid gutter="{{ 10 }}" column-num="2" clickable>
+  <van-grid-item  use-slot wx:for="{{ 6 }}" wx:for-item="index" wx:key="*this">
+      <image
+      style="width: 80px; height: 80px;"
+      src="../../images/icon-{{ index + 1 }}.png"
+      data-bindex='{{index}}'
+      bindtap="onClickButton"
+      />
+  </van-grid-item>
+</van-grid>
+
 </view>
