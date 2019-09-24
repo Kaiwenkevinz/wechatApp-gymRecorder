@@ -1,5 +1,16 @@
-<view class="btn_start">
-  <van-button type="info" size="large">
-    开始训练
-  </van-button>
+<view class="container"> 
+  <van-row gutter="16">
+    <van-col span="10">
+      <van-button type="default" size="normal">默认按钮</van-button>
+    </van-col>
+    <van-col span="10">
+      <van-button type="default" size="normal">默认按钮</van-button>
+    </van-col>
+  </van-row>
+
+  <!-- <view class="btn_start"> -->
+    <!-- <van-button type="info" size="large">
+      开始训练
+    </van-button> -->
+  <!-- </view> -->
 </view>
