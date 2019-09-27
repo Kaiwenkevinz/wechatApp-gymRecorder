@@ -1,11 +1,5 @@
 <view class="container"> 
 
-<!-- <van-grid>
-  <van-grid-item icon="photo-o" text="文字" />
-  <van-grid-item icon="photo-o" text="文字" />
-  <van-grid-item icon="photo-o" text="文字" />
-  <van-grid-item icon="photo-o" text="文字" />
-</van-grid> -->
 <van-grid gutter="{{ 10 }}" column-num="2" clickable>
   <van-grid-item  use-slot wx:for="{{ 6 }}" wx:for-item="index" wx:key="*this">
       <image

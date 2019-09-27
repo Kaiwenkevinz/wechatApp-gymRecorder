@@ -65,6 +65,49 @@ Page({
   },
 
   onClickButton: function (e) {
-    console.log(e.currentTarget.dataset.bindex)
+
+    var area;
+    switch (e.currentTarget.dataset.bindex) {
+      case 0:
+        // 胸部
+        area = "chest";
+        break;
+      case 1:
+        // 背部
+        area = "back";
+        break;
+      case 2:
+        // 肩部
+        area = "shoulder";
+        break;
+      case 3:
+        // 手臂
+        area = "arms";
+        break;
+      case 4:
+        // 核心
+        area = "abs";
+        break;
+      case 5:
+        // 臀腿
+        area = "legs";
+        break;
+      default:
+        wx.showToast({
+          title: 'Something wrong',
+          icon: '',
+          image: '',
+          duration: 0,
+          mask: true,
+          success: function(res) {},
+          fail: function(res) {},
+          complete: function(res) {},
+        })
+    }
+    
+    wx.navigateTo({
+      url: '/pages/enter_info/index?area=' + area
+    })
+
   }
 })

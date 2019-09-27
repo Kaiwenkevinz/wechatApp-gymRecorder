@@ -1,0 +1,18 @@
+<!--pages/enter_info/index.wxml-->
+
+<view class="container"> 
+  <van-cell-group class="cell">
+    <van-cell title="动作" value="内容" size="large" bindtap="onClickMovementBtn" clickable/>
+    <van-cell title="组数" value="内容" size="large"/>
+    <van-cell title="重量" value="内容" size="large"/>
+  </van-cell-group>
+
+  <van-popup
+  show="{{ show }}"
+  position="top"
+  custom-style="height: 20%"
+  bind:close="onClosePopup"
+  round
+  />
+
+</view>
