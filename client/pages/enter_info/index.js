@@ -101,10 +101,12 @@ Page({
       show: false,
       movement: value
     })
+
+    // 更新已选动作对应组数
   },
 
   onChangeStepper(event) {
-    console.log(event.detail)
+    // console.log(event.detail)
     this.setData({
       weight: event.detail
     })

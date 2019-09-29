@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/enter_info/index",
     "pages/index/index",
+    "pages/enter_info/index",
+
     "pages/history/index",
     "pages/user/index"
   ],

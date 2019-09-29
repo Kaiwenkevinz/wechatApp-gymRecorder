@@ -5,14 +5,39 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    last_login_date: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    wx.getStorage({
+      key: 'last_login_date',
+      success: function (res) {
+        that.setData({
+          last_login_date: res.data
+        })
+        that.setUpRepetition()
+      }
+    })
+  },
 
+  setUpRepetition() {
+    // 判定是否清零组数
+    const current_date_without_time = new Date().setHours(0, 0, 0, 0);
+    const last_login_date = this.data.last_login_date
+
+    if (!last_login_date || last_login_date.valueOf() < current_date_without_time.valueOf()) {
+      console.log("clear repetition record")
+      wx.clearStorage()
+    }   
+
+    wx.setStorage({
+      key: 'last_login_date',
+      data: current_date_without_time,
+    })
   },
 
   /**
@@ -108,6 +133,6 @@ Page({
     wx.navigateTo({
       url: '/pages/enter_info/index?area=' + area
     })
-
   }
+
 })
