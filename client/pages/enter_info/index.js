@@ -23,7 +23,7 @@ Page({
   onLoad: function (options) {
     
     // Mock Data. Delete In Production
-    options.area = "back";
+    // options.area = "back";
 
     this.setData({
       area: options.area
@@ -38,16 +38,16 @@ Page({
         selected_col = ['引体向上', '高位下拉', '坐姿划船', '杠铃划船', '练习器划船', '哑铃划船'];
         break;
       case "shoulder":
-        selected_col = [''];
+        selected_col = ['侧平举', '反向飞鸟', '前平举', '哑铃推举'];
         break;
       case "arms":
-        selected_col = [];
+        selected_col = ['哑铃弯举', '杠铃弯举', '肱三头肌绳索下压'];
         break;
       case "abs":
-        selected_col = [];
+        selected_col = ['卷腹', '十字交叉'];
         break;
       case "legs":
-        selected_col = [];
+        selected_col = ['负重深蹲'];
         break;
     }
 
@@ -138,20 +138,44 @@ Page({
   },
 
   onClickFinishBtn() {
+    var that = this
+    var formatted_info = "第 " + this.data.num_of_set + " 组 " + "重 " + this.data.weight + "Ibs"
     var obj = {
       date: this.data.date,
       content: {
         movement: this.data.movement,
         weight: this.data.weight,
         repetition: this.data.repetition,
-        num_of_set: this.data.num_of_set
+        num_of_set: this.data.num_of_set,
+        formatted_info: formatted_info
       }
     }
     
     console.log(obj)
+    this.onCreateNewRecord(obj)
     
     this.setData({
       num_of_set: this.data.num_of_set += 1
-    })
+    }),
+      wx.setStorage({
+        key: that.data.movement,
+        data: that.data.num_of_set
+      })
+  },
+
+  onCreateNewRecord(obj) {
+    const db = wx.cloud.database();
+
+    db.collection("users").add({
+      data: obj,
+      success: res => {
+        wx.showToast({
+          title: "创建成功"
+        });
+      },
+      fail: err => {
+        console.error("创建失败：", err);
+      }
+    });
   }
 })

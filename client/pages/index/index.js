@@ -28,7 +28,7 @@ Page({
 
   setUpRepetition() {
     // 判定是否清零组数
-    console.log("run")
+    console.log("run clear rep")
     const current_date_without_time = new Date().setHours(0, 0, 0, 0);
     const last_login_date = this.data.last_login_date
 

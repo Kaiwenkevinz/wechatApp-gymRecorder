@@ -1,2 +1,19 @@
 <!--pages/history/index.wxml-->
-<text>pages/history/index.wxml</text>
+<view class="container">
+
+<van-swipe-cell 
+  wx:for="{{contentArray}}" 
+  wx:for-index="idx" 
+  class ="swipe-cell" right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onCloseSwipeCell">
+  <view slot="left">
+    <van-button type="primary">编辑</van-button>
+  </view>
+  <van-cell-group>
+    <van-cell title="{{ item.movement }}" value="{{ item.formatted_info }}" />
+  </van-cell-group>
+  <view slot="right">
+    <van-button type="danger">删除</van-button>
+  </view>
+</van-swipe-cell>
+
+</view>

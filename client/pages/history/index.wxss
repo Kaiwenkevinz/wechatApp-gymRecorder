@@ -1,1 +1,5 @@
 /* pages/history/index.wxss */
+
+.swipe-cell {
+  width: 100%;
+}

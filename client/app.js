@@ -8,8 +8,22 @@ App({
         traceUser: true,
       })
     }
+
+    // wx.cloud.callFunction({
+    //   name: 'getOpenId',
+    //   complete: res => {
+    //     var openid = res.result.openId;
+    //     this.globalData.userInfo = openid
+    //     console.log("app.js " + openid)
+    //     wx.setStorage({
+    //       key: 'openId',
+    //       data: openid
+    //     })
+    //   }
+    // })
   },
+
   globalData: {
-    userInfo: null
+    userInfo: ''
   }
 })
