@@ -7,7 +7,7 @@
 
     <van-cell title="重量" size="large" > 
       <van-stepper 
-      value="{{ 30 }}" 
+      value="{{ weight }}" 
       step="5"
       min="0"
       bind:change="onChangeStepper" />

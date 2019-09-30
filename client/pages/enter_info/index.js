@@ -1,6 +1,6 @@
 // pages/enter_info/index.js
 import Toast from './../../miniprogram_npm/vant-weapp/toast/toast';
-
+import util from './../../utils/util'
 Page({
 
   /**
@@ -11,9 +11,10 @@ Page({
     show: false,   // 弹出层
     columns: [],
     movement: '选择动作', // 动作
-    weight: 0,           // 重量
+    weight: 30,           // 重量
     repetition: null,    // 次数 
-    num_of_set: 1        // 组数
+    num_of_set: 1,        // 组数
+    date: null
   },
 
   /**
@@ -49,9 +50,10 @@ Page({
         selected_col = [];
         break;
     }
-    
+
     this.setData({
-        columns: selected_col
+      columns: selected_col,
+      date: util.formatTime(new Date(wx.getStorageSync("last_login_date")))
       }
     )
   },
@@ -130,10 +132,26 @@ Page({
   },
 
   onChangeField(event) {
-    console.log(event.detail);
+    this.setData({
+      repetition: parseInt(event.detail)
+    })
   },
 
   onClickFinishBtn() {
-    console.log("click")
+    var obj = {
+      date: this.data.date,
+      content: {
+        movement: this.data.movement,
+        weight: this.data.weight,
+        repetition: this.data.repetition,
+        num_of_set: this.data.num_of_set
+      }
+    }
+    
+    console.log(obj)
+    
+    this.setData({
+      num_of_set: this.data.num_of_set += 1
+    })
   }
 })
