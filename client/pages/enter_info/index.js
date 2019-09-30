@@ -10,8 +10,10 @@ Page({
     area: "chest",
     show: false,   // 弹出层
     columns: [],
-    movement: "选择动作",
-    weight: 1
+    movement: '选择动作', // 动作
+    weight: 0,           // 重量
+    repetition: null,    // 次数 
+    num_of_set: 1        // 组数
   },
 
   /**
@@ -29,13 +31,13 @@ Page({
     var selected_col = [];
     switch (options.area) {
       case "chest":
-        selected_col = ["平板杠铃卧推", "上斜杠铃卧推", "平板哑铃卧推", "上斜哑铃卧推", "蝴蝶夹胸", "十字夹胸"];
+        selected_col = ['平板杠铃卧推', '上斜杠铃卧推', '平板哑铃卧推', '上斜哑铃卧推', '蝴蝶夹胸', '十字夹胸'];
         break;
       case "back":
-        selected_col = ["引体向上", "高位下拉", "坐姿划船", "杠铃划船", "练习器划船", "哑铃划船"];
+        selected_col = ['引体向上', '高位下拉', '坐姿划船', '杠铃划船', '练习器划船', '哑铃划船'];
         break;
       case "shoulder":
-        selected_col = [""];
+        selected_col = [''];
         break;
       case "arms":
         selected_col = [];
@@ -65,7 +67,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(this.data.area)
+    console.log("onShow: " + this.data.area)
   },
 
   /**
@@ -95,14 +97,29 @@ Page({
   },
 
   onConfirmPicker(event) {
+    var that = this
     const { picker, value, index } = event.detail;
     console.log(value)
+
     this.setData({
       show: false,
       movement: value
-    })
-
-    // 更新已选动作对应组数
+    }), 
+      // 更新已选动作对应组数
+      wx.getStorage({
+        key: this.data.movement,
+        success: function (res) {
+          console.log(res.data)
+          that.setData({
+            num_of_set: res.data
+          })
+        },
+        fail: function (res) {
+          that.setData({
+            num_of_set: 1
+          })
+        }
+      })
   },
 
   onChangeStepper(event) {
@@ -110,10 +127,13 @@ Page({
     this.setData({
       weight: event.detail
     })
-  }
+  },
 
-  // 判定组数
-  // 数据库存入latest_login_date
-  // 与date_of_today 比较，判定是否当天首次登陆
-  // 是->清空组数
+  onChangeField(event) {
+    console.log(event.detail);
+  },
+
+  onClickFinishBtn() {
+    console.log("click")
+  }
 })

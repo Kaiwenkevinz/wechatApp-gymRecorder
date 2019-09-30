@@ -9,10 +9,19 @@
       <van-stepper 
       value="{{ 30 }}" 
       step="5"
+      min="0"
       bind:change="onChangeStepper" />
     </van-cell>
 
-    <van-cell title="组数" value="内容" size="large"/>
+      <van-field
+        label="次数"
+        input-align="right"
+        value="{{ repetition }}"
+        placeholder="输入次数"
+        bind:change="onChangeField"
+      />
+
+    <van-cell title="组数" value="{{ num_of_set }}" size="large"/>
   </van-cell-group>
 
  <!-- 动作 popup -->
@@ -30,5 +39,7 @@
       bind:confirm="onConfirmPicker"
     />
   </van-popup>
+
+  <van-button class="btn-finish" plain type="info" bind:click="onClickFinishBtn">完成本组</van-button>
 
 </view>

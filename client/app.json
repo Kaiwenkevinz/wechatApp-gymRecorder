@@ -1,8 +1,7 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/enter_info/index",
-
+    "pages/index/index",
     "pages/history/index",
     "pages/user/index"
   ],
@@ -42,6 +41,7 @@
     "van-cell-group": "vant-weapp/cell-group/index",
     "van-popup": "vant-weapp/popup/index",
     "van-picker": "vant-weapp/picker/index",
-    "van-stepper": "vant-weapp/stepper/index"
+    "van-stepper": "vant-weapp/stepper/index",
+    "van-field": "vant-weapp/field/index"
   }
 }

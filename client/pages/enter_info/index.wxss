@@ -3,3 +3,7 @@
 .cell {
   width: 100%;
 }
+
+.btn-finish {
+  padding-top: 50px;
+}

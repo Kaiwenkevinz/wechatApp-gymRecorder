@@ -19,6 +19,8 @@ Page({
         that.setData({
           last_login_date: res.data
         })
+      }, 
+      fail: function() {
         that.setUpRepetition()
       }
     })
@@ -26,6 +28,7 @@ Page({
 
   setUpRepetition() {
     // 判定是否清零组数
+    console.log("run")
     const current_date_without_time = new Date().setHours(0, 0, 0, 0);
     const last_login_date = this.data.last_login_date
 
