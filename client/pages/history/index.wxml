@@ -1,13 +1,14 @@
 <!--pages/history/index.wxml-->
-<view class="container">
+<scroll-view scroll-y="true" bindscrolltolower="searchScrollLower">
 
+<view class="container">
     <van-cell class="cell-date" title="" value="{{ readableCurrentDate }}" size="large" bindtap="showPopup" clickable/>
 
 <van-swipe-cell 
   wx:for="{{contentArray}}" 
   wx:for-index="idx"
   wx:key="idx"
-  class ="swipe-cell" right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onCloseSwipeCell">
+  class="result-item"right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onCloseSwipeCell">
   <view slot="left">
     <van-button type="primary">编辑</van-button>
   </view>
@@ -18,6 +19,8 @@
     <van-button type="danger">删除</van-button>
   </view>
 </van-swipe-cell>
+<view class="loading" hidden="{{!loadMore}}">正在载入更多...</view>
+  <view class="loading" hidden="{{!loadAll}}">已加载全部</view>
 
  <!-- 日期选择 popup -->
   <van-popup
@@ -36,5 +39,6 @@
       bind:confirm="onConfirmPicker"
     />
   </van-popup>
-
 </view>
+
+</scroll-view>

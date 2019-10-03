@@ -34,8 +34,8 @@ Page({
     const current_date_without_time = new Date().setHours(0, 0, 0, 0);
     const last_login_date = this.data.last_login_date
 
-    console.log("last_login_date" + last_login_date)
-    console.log("current_date_without_time" + current_date_without_time)
+    // console.log("last_login_date" + last_login_date)
+    // console.log("current_date_without_time" + current_date_without_time)
 
 
     if (!last_login_date || last_login_date.valueOf() < current_date_without_time.valueOf()) {

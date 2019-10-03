@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/history/index",
+    "pages/index/index",
+    
     "pages/enter_info/index",
     "pages/user/index"
   ],
@@ -29,6 +30,7 @@
       }
     ]
   },
+  "onReachBottomDistance": 50,
   "usingComponents": {
     "van-button": "vant-weapp/button",
     "van-tabbar": "vant-weapp/tabbar/index",

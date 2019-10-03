@@ -3,6 +3,8 @@ import util from './../../utils/util'
 
 //获取应用实例
 const app = getApp()
+let currentPage = 0 // 当前第几页,0代表第一页 
+let pageSize = 5 //每页显示多少数据 
 
 Page({
 
@@ -16,7 +18,9 @@ Page({
     minDate: new Date(2009,10,2).getTime(),
     maxDate: new Date().getTime(),
     currentDate: new Date().getTime(),
-    readableCurrentDate: null
+    readableCurrentDate: null,
+    loadMore: false, //"上拉加载"的变量，默认false，隐藏  
+    loadAll: false //“没有数据”的变量，默认false，隐藏  
   },
 
   /**
@@ -60,7 +64,20 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    console.log("上拉触底事件")
+    let that = this
+    currentPage++
+    if (!that.data.loadMore) {
+      that.setData({
+        loadMore: true, //加载中  
+        loadAll: false //是否加载完所有数据
+      });
 
+      //加载更多，这里做下延时加载
+      setTimeout(function () {
+        that.getContentByOpenIdAndDate()
+      }, 2000)
+    }
   },
 
   onCloseSwipeCell(event) {
@@ -79,18 +96,50 @@ Page({
 
   getContentByOpenIdAndDate: function () {
     const db = wx.cloud.database()
-    const that = this
-    db.collection("users").where({
+    let that = this
+    
+    if (currentPage == 1) {
+      this.setData({
+        loadMore: true, //把"上拉加载"的变量设为true，显示  
+        loadAll: false //把“没有数据”设为false，隐藏  
+      })
+    }
+
+    db.collection("users")
+      .skip(currentPage * pageSize)
+      .limit(pageSize)
+      .where({
       _openid: this.data.open_id,
       date: this.data.readableCurrentDate
     }).get({
       success: res => {
-        if (res.data) {
+        if (res.data && res.data.length > 0) {
           that.setData({
-            contentArray: res.data
+            contentArray: res.data,
+            loadMore: false //把"上拉加载"的变量设为false，显示  
+          })
+
+          if (res.data.length < pageSize) {
+            console.log("2")
+            that.setData({
+              loadMore: false, //隐藏加载中。。
+              loadAll: true //所有数据都加载完了
+            })
+          }
+        } else {
+          console.log("1")
+          that.setData({
+            loadAll: true, //把“没有数据”设为true，显示  
+            loadMore: false //把"上拉加载"的变量设为false，隐藏  
           })
         }
-        console.log(this.data.contentArray)
+        // console.log(this.data.contentArray)
+      },
+      fail: res => {
+        that.setData({
+          loadAll: false,
+          loadMore: false
+        });
       }
     })
   },
@@ -120,6 +169,8 @@ Page({
 
     this.setData({
       show: false,
+      loadAll: false, //把“没有数据”设为true，显示  
+      loadMore: false, //把"上拉加载"的变量设为false，隐藏  
       readableCurrentDate: date
     }),
       this.getContentByOpenIdAndDate()
