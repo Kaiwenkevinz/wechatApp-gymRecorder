@@ -1,9 +1,8 @@
 {
   "pages": [
-    "pages/history/index",
     "pages/index/index",
+    "pages/history/index",
     "pages/enter_info/index",
-    
     "pages/user/index"
   ],
   "window": {
@@ -44,6 +43,7 @@
     "van-picker": "vant-weapp/picker/index",
     "van-stepper": "vant-weapp/stepper/index",
     "van-field": "vant-weapp/field/index",
-    "van-swipe-cell": "vant-weapp/swipe-cell/index"
+    "van-swipe-cell": "vant-weapp/swipe-cell/index",
+    "van-datetime-picker": "vant-weapp/datetime-picker/index"
   }
 }

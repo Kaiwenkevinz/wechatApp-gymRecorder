@@ -1,19 +1,40 @@
 <!--pages/history/index.wxml-->
 <view class="container">
 
+    <van-cell class="cell-date" title="" value="{{ readableCurrentDate }}" size="large" bindtap="showPopup" clickable/>
+
 <van-swipe-cell 
   wx:for="{{contentArray}}" 
-  wx:for-index="idx" 
+  wx:for-index="idx"
+  wx:key="idx"
   class ="swipe-cell" right-width="{{ 65 }}" left-width="{{ 65 }}" async-close bind:close="onCloseSwipeCell">
   <view slot="left">
     <van-button type="primary">编辑</van-button>
   </view>
   <van-cell-group>
-    <van-cell title="{{ item.movement }}" value="{{ item.formatted_info }}" />
+    <van-cell title="{{ item.content.movement }}" value="{{ item.content.formatted_info }}" />
   </van-cell-group>
   <view slot="right">
     <van-button type="danger">删除</van-button>
   </view>
 </van-swipe-cell>
+
+ <!-- 日期选择 popup -->
+  <van-popup
+  show="{{ show }}"
+  position="top"
+  custom-style="height: 50%"
+  bind:close="onClosePopup"
+  >
+    <van-datetime-picker
+      type="date"
+      value="{{ currentDate }}"
+      min-date="{{ minDate }}"
+      max-date="{{ maxDate }}"
+      bind:input="onInputPopup"
+      bind:cancel="onCancelPicker"
+      bind:confirm="onConfirmPicker"
+    />
+  </van-popup>
 
 </view>

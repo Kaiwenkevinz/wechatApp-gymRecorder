@@ -16,9 +16,11 @@ Page({
     wx.getStorage({
       key: 'last_login_date',
       success: function (res) {
+        console.log("success")
         that.setData({
           last_login_date: res.data
         })
+        that.setUpRepetition()
       }, 
       fail: function() {
         that.setUpRepetition()
@@ -28,9 +30,13 @@ Page({
 
   setUpRepetition() {
     // 判定是否清零组数
-    console.log("run clear rep")
+    console.log("check if clear rep")
     const current_date_without_time = new Date().setHours(0, 0, 0, 0);
     const last_login_date = this.data.last_login_date
+
+    console.log("last_login_date" + last_login_date)
+    console.log("current_date_without_time" + current_date_without_time)
+
 
     if (!last_login_date || last_login_date.valueOf() < current_date_without_time.valueOf()) {
       console.log("clear repetition record")

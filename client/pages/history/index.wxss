@@ -3,3 +3,7 @@
 .swipe-cell {
   width: 100%;
 }
+
+.cell-date {
+  width: 100%;
+}

@@ -10,12 +10,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    contentArray: [
-      { "num_of_set": 2.0, "movement": "高位下拉", "weight": 25.0, "repetition": 1.0 },
-      { "movement": "坐姿划船", "weight": 25.0, "repetition": 12.0, "num_of_set": 2.0 },
-      { "num_of_set": 2.0, "movement": "高位下拉", "weight": 30.0, "repetition": 21.0 }
-    ],
-    open_id: null    
+    contentArray: [],
+    open_id: null,
+    show: false,
+    minDate: new Date(2009,10,2).getTime(),
+    maxDate: new Date().getTime(),
+    currentDate: new Date().getTime(),
+    readableCurrentDate: null
   },
 
   /**
@@ -30,9 +31,13 @@ Page({
         // console.log(res)
         var openid = res.result.openId
         that.data.open_id = openid
-        console.log("history " + this.data.open_id)
-        this.getContentByOpenId()
+        console.log("open id " + this.data.open_id)
+        this.getContentByOpenIdAndDate()
       }
+    })
+
+    this.setData({
+      readableCurrentDate: util.formatTime(new Date(this.data.currentDate))
     })
   },
 
@@ -41,13 +46,14 @@ Page({
    */
   onShow: function () {
     this.getTabBar().init();
+    console.log("refresh history")
+    this.getContentByOpenIdAndDate()
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
   },
 
   /**
@@ -71,21 +77,51 @@ Page({
     }
   },
 
-  getContentByOpenId: function () {
+  getContentByOpenIdAndDate: function () {
     const db = wx.cloud.database()
     const that = this
-
     db.collection("users").where({
-      _openid: this.data.open_id
+      _openid: this.data.open_id,
+      date: this.data.readableCurrentDate
     }).get({
       success: res => {
         if (res.data) {
-          console.log("根据openid获取用户信息：", res.data);
           that.setData({
             contentArray: res.data
           })
         }
+        console.log(this.data.contentArray)
       }
     })
+  },
+  
+  showPopup() {
+    this.setData({ show: true });
+  },
+
+  onClosePopup() {
+    this.setData({ show: false });
+  },
+
+  onInputPopup(event) {
+    this.setData({
+      currentDate: event.detail
+    });
+  },
+
+  onCancelPicker() {
+    this.setData({
+      show: false
+    })
+  },
+
+  onConfirmPicker() {
+    var date = util.formatTime(new Date(this.data.currentDate))
+
+    this.setData({
+      show: false,
+      readableCurrentDate: date
+    }),
+      this.getContentByOpenIdAndDate()
   }
 })
