@@ -1,6 +1,8 @@
 // pages/enter_info/index.js
 import Toast from './../../miniprogram_npm/vant-weapp/toast/toast';
+import Notify from './../../miniprogram_npm/vant-weapp/notify/notify';
 import util from './../../utils/util'
+
 Page({
 
   /**
@@ -169,9 +171,7 @@ Page({
     db.collection("users").add({
       data: obj,
       success: res => {
-        wx.showToast({
-          title: "创建成功"
-        });
+        Notify({ type: 'primary', message: '创建完成' });
       },
       fail: err => {
         console.error("创建失败：", err);

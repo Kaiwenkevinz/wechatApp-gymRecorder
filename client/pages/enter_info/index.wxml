@@ -1,7 +1,7 @@
 <!--pages/enter_info/index.wxml-->
 
-<view class="container"> 
-
+<view class="container-enter_info"> 
+  <van-notify id="van-notify" />
   <van-cell-group class="cell">
     <van-cell title="动作" value="{{ movement }}" size="large" bindtap="onClickMovementBtn" clickable/>
 
@@ -41,5 +41,4 @@
   </van-popup>
 
   <van-button class="btn-finish" plain type="info" bind:click="onClickFinishBtn">完成本组</van-button>
-
 </view>
