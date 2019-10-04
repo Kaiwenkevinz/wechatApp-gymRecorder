@@ -30,7 +30,6 @@
       }
     ]
   },
-  "onReachBottomDistance": 50,
   "usingComponents": {
     "van-button": "vant-weapp/button",
     "van-tabbar": "vant-weapp/tabbar/index",

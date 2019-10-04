@@ -3,18 +3,13 @@
 page {
   display: flex;
   flex-direction: column;
-  /* height: 100%; */
+  padding-bottom: 50px;
 }
 
 .result-item {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  width: 100%;
-}
-
-.cell-date {
-  width: 100%;
 }
 
 .loading {

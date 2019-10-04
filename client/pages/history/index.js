@@ -4,7 +4,7 @@ import util from './../../utils/util'
 //获取应用实例
 const app = getApp()
 let currentPage = 0 // 当前第几页,0代表第一页 
-let pageSize = 5 //每页显示多少数据 
+let pageSize = 15 //每页显示多少数据 
 
 Page({
 
@@ -114,20 +114,19 @@ Page({
     }).get({
       success: res => {
         if (res.data && res.data.length > 0) {
+          var new_array = that.data.contentArray.concat(res.data)
           that.setData({
-            contentArray: res.data,
+            contentArray: new_array,
             loadMore: false //把"上拉加载"的变量设为false，显示  
           })
 
           if (res.data.length < pageSize) {
-            console.log("2")
             that.setData({
               loadMore: false, //隐藏加载中。。
               loadAll: true //所有数据都加载完了
             })
           }
         } else {
-          console.log("1")
           that.setData({
             loadAll: true, //把“没有数据”设为true，显示  
             loadMore: false //把"上拉加载"的变量设为false，隐藏  
@@ -166,12 +165,14 @@ Page({
 
   onConfirmPicker() {
     var date = util.formatTime(new Date(this.data.currentDate))
+    currentPage = 0
 
     this.setData({
       show: false,
       loadAll: false, //把“没有数据”设为true，显示  
       loadMore: false, //把"上拉加载"的变量设为false，隐藏  
-      readableCurrentDate: date
+      readableCurrentDate: date,
+      contentArray: []
     }),
       this.getContentByOpenIdAndDate()
   }

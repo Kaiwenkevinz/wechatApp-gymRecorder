@@ -1,7 +1,6 @@
 <!--pages/history/index.wxml-->
-<scroll-view scroll-y="true" bindscrolltolower="searchScrollLower">
 
-<view class="container">
+<view class="container-history">
     <van-cell class="cell-date" title="" value="{{ readableCurrentDate }}" size="large" bindtap="showPopup" clickable/>
 
 <van-swipe-cell 
@@ -40,5 +39,3 @@
     />
   </van-popup>
 </view>
-
-</scroll-view>
