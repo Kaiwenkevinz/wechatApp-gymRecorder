@@ -32,10 +32,12 @@ Page({
     wx.cloud.callFunction({
       name: 'getOpenId',
       complete: res => {
-        // console.log(res)
         var openid = res.result.openId
         that.data.open_id = openid
         console.log("open id " + this.data.open_id)
+        that.setData({
+          contentArray: []
+        })
         this.getContentByOpenIdAndDate()
       }
     })
@@ -50,7 +52,13 @@ Page({
    */
   onShow: function () {
     this.getTabBar().init();
-    console.log("refresh history")
+    
+    this.setData({
+      loadAll: false, //把“没有数据”设为true，显示  
+      loadMore: false, //把"上拉加载"的变量设为false，隐藏  
+      contentArray: []
+    })
+
     this.getContentByOpenIdAndDate()
   },
 
@@ -58,6 +66,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+  },
+
+  onHide:function() {
+    this.setData({
+      loadAll: false, //把“没有数据”设为true，显示  
+      loadMore: false, //把"上拉加载"的变量设为false，隐藏  
+      contentArray: []
+    })
   },
 
   /**

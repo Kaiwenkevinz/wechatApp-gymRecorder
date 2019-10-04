@@ -1,23 +1,24 @@
 {
   "pages": [
-    "pages/history/index",
+    "pages/bodyweight_chart/index",
+    "pages/user/index",
     "pages/index/index",
+    "pages/history/index",
+    "pages/enter_info/index"
     
-    "pages/enter_info/index",
-    "pages/user/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#584B5D",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
   "sitemapLocation": "sitemap.json",
   "tabBar": {
     "custom": true,
-    "color": "#000000",
-    "selectedColor": "#000000",
-    "backgroundColor": "#000000",
+    "color": "#282C34",
+    "selectedColor": "#282C34",
+    "backgroundColor": "#282C34",
     "list": [
       {
         "pagePath": "pages/index/index"
@@ -48,6 +49,7 @@
     "van-datetime-picker": "vant-weapp/datetime-picker/index",
     "van-loading": "vant-weapp/loading/index",
     "van-transition": "vant-weapp/transition/index",
-    "van-notify": "vant-weapp/notify/index"
+    "van-notify": "vant-weapp/notify/index",
+    "ff-canvas": "@antv/f2-canvas/index"
   }
 }
