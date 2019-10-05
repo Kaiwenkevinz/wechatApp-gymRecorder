@@ -9,9 +9,9 @@ function initChart(canvas, width, height, F2) {
     animate: false
   });
   chart.source(data, {
-    date: {
-      min: 2014,
-      max: 2018
+    index: {
+      min: 15,
+      max: 20
     }
   });
   chart.tooltip({
@@ -27,7 +27,9 @@ function initChart(canvas, width, height, F2) {
     },
     onShow(ev) {
       const items = ev.items;
-      items[0].name = items[0].date;
+      // var content = items[0].title.concat(items[0].value)
+      // console.log(content)
+      items[0].name = items[0].title
     }
   });
   chart.line().position('date*weight');
