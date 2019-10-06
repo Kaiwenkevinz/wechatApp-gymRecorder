@@ -1,5 +1,37 @@
 <!--pages/bodyweight_chart/index.wxml-->
 
+<view class="container-bodyweight_chart">
+
 <view class="bodyweight_chart">
-  <ff-canvas id="scroll" canvas-id="scrollLine" opts="{{ opts }}"></ff-canvas>
+  <ff-canvas id="line-dom" canvas-id="line" opts="{{ opts }}"></ff-canvas>
+</view>
+
+  <van-cell-group class="date-cell">
+    <view >
+      <van-cell  value="{{ readableDate }}" size="large" bindtap="onClickDateCell" clickable/>
+    </view>
+  </van-cell-group>
+
+ <!-- 日期选择 popup -->
+  <van-popup
+  show="{{ show }}"
+  position="bottom"
+  custom-style="height: 40%"
+  bind:close="onClosePopup"
+  >
+    <van-datetime-picker
+      type="year-month"
+      value="{{ currentDate }}"
+      min-date="{{ minDate }}"
+      max-date="{{ maxDate }}"
+      formatter="{{ formatter }}"
+      bind:cancel="onCancelPicker"
+      bind:confirm="onConfirmPicker"
+    />
+  </van-popup>
+
+  <view class="under-dev">
+    留白(正在开发ing)
+  </view>
+
 </view>

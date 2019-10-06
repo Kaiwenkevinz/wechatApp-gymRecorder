@@ -1,7 +1,8 @@
 <!--pages/history/index.wxml-->
 
 <view class="container-history">
-    <van-cell class="cell-date" title="" value="{{ readableCurrentDate }}" size="large" bindtap="showPopup" clickable/>
+<van-dialog id="van-dialog" />
+    <van-cell class="cell-date" title="选择时间" value="{{ readableCurrentDate }}" size="small" bindtap="showPopup" clickable/>
 <van-swipe-cell 
   wx:for="{{contentArray}}" 
   wx:for-index="idx"

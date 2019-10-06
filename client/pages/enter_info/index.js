@@ -16,7 +16,9 @@ Page({
     weight: 30,           // 重量
     repetition: null,    // 次数 
     num_of_set: 1,        // 组数
-    date: null
+    date: null,
+    contentArray: [],
+    readableCurrentDate: util.formatTime(new Date())
   },
 
   /**
@@ -72,6 +74,7 @@ Page({
    */
   onShow: function () {
     console.log("onShow: " + this.data.area)
+    this.getLatestThreeContentByOpenId()
   },
 
   onClickMovementBtn() {
@@ -127,7 +130,7 @@ Page({
 
   onClickFinishBtn() {
     var that = this
-    var formatted_info = "第 " + this.data.num_of_set + " 组 " + "重 " + this.data.weight + "Ibs"
+    var formatted_info = "第 " + this.data.num_of_set + " 组 " + this.data.weight + "Ibs * " + this.data.repetition
     var obj = {
       date: this.data.date,
       content: {
@@ -141,27 +144,52 @@ Page({
     
     console.log(obj)
     this.onCreateNewRecord(obj)
-    
-    this.setData({
-      num_of_set: this.data.num_of_set += 1
-    }),
-      wx.setStorage({
-        key: that.data.movement,
-        data: that.data.num_of_set
-      })
   },
 
   onCreateNewRecord(obj) {
+    var that = this
     const db = wx.cloud.database();
 
     db.collection("users").add({
       data: obj,
       success: res => {
         Notify({ type: 'primary', message: '创建完成' });
+        that.setData({
+          num_of_set: that.data.num_of_set += 1
+        }),
+          wx.setStorage({
+            key: that.data.movement,
+            data: that.data.num_of_set
+          })
+        that.getLatestThreeContentByOpenId()
       },
       fail: err => {
         console.error("创建失败：", err);
       }
     });
-  }
+  },
+
+  getLatestThreeContentByOpenId: function () {
+    const db = wx.cloud.database()
+    let that = this
+
+    // console.log("getLatestThreeContentByOpenId: " + this.data.readableCurrentDate)
+
+    db.collection("users")
+      .where({
+        _openid: this.data.open_id,
+        date: this.data.readableCurrentDate
+      }).get({
+        success: res => {
+          var contentArray = res.data.slice(-4).reverse()
+          console.log(contentArray)
+          this.setData({
+            contentArray: contentArray
+          })
+        },
+        fail: res => {
+          console.log("Fail: " + res)
+        }
+      })
+  },
 })

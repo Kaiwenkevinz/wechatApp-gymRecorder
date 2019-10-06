@@ -9,7 +9,7 @@
 </view>
 <van-cell
   is-link
-  title="单元格"
+  title="体重数据"
   link-type="navigateTo"
   url="/pages/bodyweight_chart/index"
 />
@@ -19,4 +19,9 @@
   link-type="navigateTo"
   url="/pages/dashboard/index"
 />
+
+<view class="version">
+  version-1.0
+</view>
+
 </view>

@@ -1,7 +1,6 @@
 /* pages/index/index.wxss */
 
-.btn_start {
-  padding-top: 500px;
-  text-align: center;
+van-grid {
+  padding-top: 25%;
 }
 

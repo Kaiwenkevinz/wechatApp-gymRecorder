@@ -1,10 +1,11 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/enter_info/index",
+
     "pages/bodyweight_chart/index",
     "pages/user/index",
-    "pages/index/index",
-    "pages/history/index",
-    "pages/enter_info/index"
+    "pages/history/index"
     
   ],
   "window": {
@@ -50,6 +51,9 @@
     "van-loading": "vant-weapp/loading/index",
     "van-transition": "vant-weapp/transition/index",
     "van-notify": "vant-weapp/notify/index",
-    "ff-canvas": "@antv/f2-canvas/index"
+    "ff-canvas": "@antv/f2-canvas/index",
+    "van-icon": "vant-weapp/icon/index",
+    "van-dialog": "vant-weapp/dialog/index",
+    "van-divider": "vant-weapp/divider/index"
   }
 }

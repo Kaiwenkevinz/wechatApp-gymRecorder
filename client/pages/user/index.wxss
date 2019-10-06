@@ -31,3 +31,11 @@
   color: #fff;
   font-size: 30rpx;
 }
+
+.version {
+  font-size: 20rpx;
+  color: #BAB9BB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -13,7 +13,6 @@ Page({
    */
   data: {
     contentArray: [],
-    open_id: null,
     show: false,
     minDate: new Date(2009,10,2).getTime(),
     maxDate: new Date().getTime(),
@@ -27,21 +26,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
-
-    wx.cloud.callFunction({
-      name: 'getOpenId',
-      complete: res => {
-        var openid = res.result.openId
-        that.data.open_id = openid
-        console.log("open id " + this.data.open_id)
-        that.setData({
-          contentArray: []
-        })
-        this.getContentByOpenIdAndDate()
-      }
-    })
-
     this.setData({
       readableCurrentDate: util.formatTime(new Date(this.data.currentDate))
     })
@@ -53,12 +37,14 @@ Page({
   onShow: function () {
     this.getTabBar().init();
     
+    console.log("onShow, empty data")
     this.setData({
       loadAll: false, //把“没有数据”设为true，显示  
       loadMore: false, //把"上拉加载"的变量设为false，隐藏  
       contentArray: []
     })
-
+    console.log("onShow, load data from beginning")
+    currentPage = 0
     this.getContentByOpenIdAndDate()
   },
 
@@ -69,6 +55,7 @@ Page({
   },
 
   onHide:function() {
+    console.log("onHide, empty data")
     this.setData({
       loadAll: false, //把“没有数据”设为true，显示  
       loadMore: false, //把"上拉加载"的变量设为false，隐藏  
@@ -80,7 +67,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log("上拉触底事件")
+    console.log("onReachBottom, load more data")
     let that = this
     currentPage++
     if (!that.data.loadMore) {
@@ -101,11 +88,21 @@ Page({
     console.log(position)
     switch (position) {
       case 'left':
+        Dialog.alert({
+          message: '编辑功能正在开发'
+        }).then(() => {
+          // on close
+        });
       case 'cell':
         instance.close();
         break;
       case 'right':
         instance.close();
+        Dialog.alert({
+          message: '删除功能正在开发'
+        }).then(() => {
+          // on close
+        });
         break;
     }
   },
@@ -113,20 +110,13 @@ Page({
   getContentByOpenIdAndDate: function () {
     const db = wx.cloud.database()
     let that = this
-    
-    if (currentPage == 1) {
-      this.setData({
-        loadMore: true, //把"上拉加载"的变量设为true，显示  
-        loadAll: false //把“没有数据”设为false，隐藏  
-      })
-    }
 
     db.collection("users")
       .skip(currentPage * pageSize)
       .limit(pageSize)
       .where({
-      _openid: this.data.open_id,
-      date: this.data.readableCurrentDate
+        _openid: app.globalData.openid,
+        date: this.data.readableCurrentDate
     }).get({
       success: res => {
         if (res.data && res.data.length > 0) {
@@ -151,6 +141,7 @@ Page({
         // console.log(this.data.contentArray)
       },
       fail: res => {
+        console.log("fail loading data")
         that.setData({
           loadAll: false,
           loadMore: false
@@ -165,6 +156,7 @@ Page({
 
   onClosePopup() {
     this.setData({ show: false });
+    console.log("close popup")
   },
 
   onInputPopup(event) {

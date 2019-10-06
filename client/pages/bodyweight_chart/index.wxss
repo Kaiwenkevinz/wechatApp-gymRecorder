@@ -1,15 +1,24 @@
 /* pages/bodyweight_chart/index.wxss */
 
-ff-canvas {
+.bodyweight_chart {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  height: 50%;
+}
 
+.date-cell {
+  position: absolute;
+  width: 100%;
+  top: 50%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
+}
+
+.under-dev {
+  position: fixed;
+  bottom: 30rpx;
+  color: #848484;
 }

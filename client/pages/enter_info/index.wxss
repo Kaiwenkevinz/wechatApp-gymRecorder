@@ -4,6 +4,27 @@
   width: 100%;
 }
 
-.btn-finish {
-  padding-top: 50px;
+.btn-enter-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.enter_info-text {
+  margin-top: 20 rpx;
+}
+
+.enter_info-main {
+  width: 100%;
+  position: fixed;
+  bottom: 1rpx;
+}
+
+.cell-enter-info {
+  margin: 0rpx 0rpx 22rpx 0rpx ;
+}
+
+.cell-enter_info-history {
+  margin: 0rpx 0rpx 10rpx 0rpx ;
 }

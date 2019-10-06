@@ -3,17 +3,17 @@ Component({
     active: 0,
     list: [
       {
-        icon: 'home-o',
+        icon: 'fire',
         text: '首页',
         url: '/pages/index/index'
       },
       {
-        icon: 'search',
+        icon: 'wap-nav',
         text: '历史',
         url: '/pages/history/index'
       },
       {
-        icon: 'friends-o',
+        icon: 'manager',
         text: '我的',
         url: '/pages/user/index'
       },

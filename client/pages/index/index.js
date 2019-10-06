@@ -16,7 +16,6 @@ Page({
     wx.getStorage({
       key: 'last_login_date',
       success: function (res) {
-        console.log("success")
         that.setData({
           last_login_date: res.data
         })
@@ -30,7 +29,7 @@ Page({
 
   setUpRepetition() {
     // 判定是否清零组数
-    console.log("check if clear rep")
+    console.log("index, check if clear rep")
     const current_date_without_time = new Date().setHours(0, 0, 0, 0);
     const last_login_date = this.data.last_login_date
 
@@ -50,56 +49,13 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
     this.getTabBar().init();
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
   onClickButton: function (e) {
-
     var area;
     switch (e.currentTarget.dataset.bindex) {
       case 0:
@@ -143,5 +99,4 @@ Page({
       url: '/pages/enter_info/index?area=' + area
     })
   }
-
 })

@@ -6,3 +6,7 @@
   align-items: center;
   width: 100%;
 } 
+
+page {
+  background: #F3F3F3;
+}
