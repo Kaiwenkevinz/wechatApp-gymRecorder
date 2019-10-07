@@ -1,10 +1,11 @@
 {
   "pages": [
+    "pages/user/index",
     "pages/index/index",
     "pages/enter_info/index",
 
     "pages/bodyweight_chart/index",
-    "pages/user/index",
+
     "pages/history/index"
     
   ],

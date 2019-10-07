@@ -39,3 +39,24 @@
   align-items: center;
   justify-content: center;
 }
+
+.cell-feedback {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+}
+
+.feedback {
+  position: absolute;
+  z-index: 2;
+  height:85rpx;  
+  text-align: center;
+  line-height: 38px; 
+  background-color: transparent;
+  background: none !important;
+  width: 100%;
+}
+
+.feedback::after{
+  border:none;
+}
