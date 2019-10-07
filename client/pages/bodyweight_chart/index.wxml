@@ -1,17 +1,19 @@
 <!--pages/bodyweight_chart/index.wxml-->
 
-<view class="container-bodyweight_chart">
+<van-toast id="van-toast" />
 
+<!-- 折线图 -->
 <view class="bodyweight_chart">
   <ff-canvas id="line-dom" canvas-id="line" opts="{{ opts }}"></ff-canvas>
 </view>
 
+<view class="container-bodyweight_chart">
+<!-- 日期选择 -->
   <van-cell-group class="date-cell">
     <view >
       <van-cell  value="{{ readableDate }}" size="large" bindtap="onClickDateCell" clickable/>
     </view>
   </van-cell-group>
-
  <!-- 日期选择 popup -->
   <van-popup
   show="{{ show }}"
@@ -30,8 +32,17 @@
     />
   </van-popup>
 
-  <view class="under-dev">
-    留白(正在开发ing)
-  </view>
+<!-- 记录当日体重 -->
+<van-button size="large" type="default" bind:click="onClickEnterWeightBtn" class="enter-weight-btn">输入体重</van-button>
+<van-dialog id="van-dialog" use-slot showCancelButton>
+    <van-field
+    value="{{ weight_entered }}"
+    type="number"
+    placeholder="请输入体重"
+    border="{{ false }}"
+    bind:change="onChangeFieldBodyWeight"
+    label="体重"
+  />
+</van-dialog>
 
 </view>

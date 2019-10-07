@@ -1,9 +1,16 @@
 // pages/bodyweight_chart/index.js
 
-import data from "./fake_data.js"
 import util from './../../utils/util'
+import Dialog from './../../miniprogram_npm/vant-weapp/dialog/dialog';
+import Toast from './../../miniprogram_npm/vant-weapp/toast/toast';
 
+const app = getApp()
+const db = wx.cloud.database()
 let chart = null;
+let data = [{
+  "weight": 0,
+  "date": 0
+}];
 
 function initChart(canvas, width, height, F2) {
   chart = new F2.Chart({
@@ -44,14 +51,15 @@ Page({
       },
     maxDate: new Date().getTime(),
     currentDate: new Date().getTime(),
-    readableDate: null
+    readableDate: null,
+    weight_entered: null
   },
 
   onLoad: function(options) {
     this.setData({
       readableDate: util.formatDate(new Date(this.data.currentDate))
     })
-    console.log(this.data.readableDate)
+    this.loadBodyWeight()
   },
 
   onClickDateCell() {
@@ -67,7 +75,6 @@ Page({
   },
 
   onConfirmPicker(event) {
-    console.log(event.detail)
     this.setData({
       currentDate: event.detail,
       show: false
@@ -75,6 +82,75 @@ Page({
     this.setData({
       readableDate: util.formatDate(new Date(this.data.currentDate))
     })
-    console.log("loading data")
+    this.loadBodyWeight()
+  },
+
+  onClickEnterWeightBtn() {
+    Dialog.confirm({
+    }).then(() => {
+      var obj = {
+        date: util.formatTime(new Date()),
+        weight: parseInt(this.data.weight_entered)
+      }
+      console.log(obj.weight)
+      if (obj.weight) {
+        console.log(obj)
+        db.collection('body_weight').add({
+          data: obj,
+          success: res => {
+            console.log("weight saved")
+            this.setData({
+              weight_entered: null
+            })
+            this.loadBodyWeight()
+          },
+          fail: err => {
+            console.log("error on saving weight")
+          }
+        })
+      } else {
+        Toast('请输入体重')
+        this.onClickEnterWeightBtn()
+      }
+    });
+  },
+
+  onChangeFieldBodyWeight(event) {
+    // console.log(event.detail);
+    this.setData({
+      weight_entered: event.detail
+    })
+  },
+
+  loadBodyWeight() {
+    console.log('loading')
+
+    const _ = db.command
+    var data = []
+    const date_selected = new Date(this.data.currentDate)
+    var date = util.formatTime(date_selected)
+    var firstDay = util.getFirstDay(date_selected)
+    var lastDay = util.getLastDay(date_selected)
+
+    // console.log(firstDay + ', ' + date + ', ' + lastDay)
+
+    db.collection('body_weight')
+      .where({
+        _openid: app.globalData.openid,
+        date: _.gte(firstDay).and(_.lte(lastDay))
+      }).get({
+        success: res => {
+          res.data.forEach(function (obj) {
+            obj.date = parseInt(obj.date.slice(-2))
+          });
+          // console.log(res.data)
+          chart.changeData(res.data)
+          chart.render()
+          console.log("render")
+        },
+        fail: res => {
+          console.log('fail on loading body weight')
+        }
+      })
   }
 });

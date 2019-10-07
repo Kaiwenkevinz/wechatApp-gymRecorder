@@ -17,6 +17,23 @@ const formatDate = date => {
   return year + "年 " + month + "月"
 }
 
+
+const getFirstDay = (date) => {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = 1
+
+  return [year, month, day].map(formatNumber).join('/')
+}
+
+const getLastDay = (date) => {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 2
+  const day = 0
+
+  return [year, month, day].map(formatNumber).join('/')
+}
+
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -24,5 +41,7 @@ const formatNumber = n => {
 
 module.exports = {
   formatTime: formatTime,
-  formatDate: formatDate
+  formatDate: formatDate,
+  getFirstDay: getFirstDay,
+  getLastDay: getLastDay
 }
