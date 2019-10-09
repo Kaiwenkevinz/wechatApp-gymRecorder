@@ -11,7 +11,7 @@
 <!-- 日期选择 -->
   <van-cell-group class="date-cell">
     <view >
-      <van-cell  value="{{ readableDate }}" size="large" bindtap="onClickDateCell" clickable/>
+      <van-cell title="选择月份" value="{{ readableDate }}" size="large" bindtap="onClickDateCell" clickable/>
     </view>
   </van-cell-group>
  <!-- 日期选择 popup -->
@@ -32,17 +32,21 @@
     />
   </van-popup>
 
-<!-- 记录当日体重 -->
-<van-button size="large" type="default" bind:click="onClickEnterWeightBtn" class="enter-weight-btn">输入体重</van-button>
-<van-dialog id="van-dialog" use-slot showCancelButton>
-    <van-field
-    value="{{ weight_entered }}"
-    type="number"
-    placeholder="请输入体重"
-    border="{{ false }}"
-    bind:change="onChangeFieldBodyWeight"
-    label="体重"
-  />
-</van-dialog>
-
+<!-- 输入体重 -->
+<view class="bodyweight-field">
+      <van-field
+      size="large"
+      value="{{ weight_entered }}"
+      type="digit"
+      placeholder="请输入体重(kg)"
+      border="{{ false }}"
+      bind:change="onChangeFieldBodyWeight"
+      label="今日体重"
+      use-button-slot>
+        <van-button bind:click="onClickEnterWeightBtn" slot="button" size="small" type="default" plain >提交</van-button>
+      </van-field>
+</view>
+<view class="bodyweight-ps">
+  目前只显示每月体重记录前20条
+</view>
 </view>

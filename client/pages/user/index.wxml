@@ -23,7 +23,7 @@
 <button open-type="feedback" class="feedback"></button>
 
 <view class="version">
-  version-1.0
+  1.0.1
 </view>
 
 </view>

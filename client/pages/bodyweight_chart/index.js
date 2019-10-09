@@ -16,7 +16,8 @@ function initChart(canvas, width, height, F2) {
   chart = new F2.Chart({
     el: canvas,
     width,
-    height
+    height,
+    animate: false
   });
 
   chart.source(data);
@@ -86,33 +87,26 @@ Page({
   },
 
   onClickEnterWeightBtn() {
-    Dialog.confirm({
-    }).then(() => {
-      var obj = {
-        date: util.formatTime(new Date()),
-        weight: parseInt(this.data.weight_entered)
-      }
-      console.log(obj.weight)
-      if (obj.weight) {
-        console.log(obj)
-        db.collection('body_weight').add({
-          data: obj,
-          success: res => {
-            console.log("weight saved")
-            this.setData({
-              weight_entered: null
-            })
-            this.loadBodyWeight()
-          },
-          fail: err => {
-            console.log("error on saving weight")
-          }
-        })
-      } else {
-        Toast('请输入体重')
-        this.onClickEnterWeightBtn()
-      }
-    });
+    var obj = {
+      date: util.formatTime(new Date()),
+      weight: parseInt(this.data.weight_entered)
+    }
+    console.log(obj.weight)
+    if (obj.weight) {
+      console.log(obj)
+      db.collection('body_weight').add({
+        data: obj,
+        success: res => {
+          console.log("weight saved")
+          this.setData({
+            weight_entered: null
+          })
+          this.loadBodyWeight()
+        }
+      })
+    } else {
+      Toast('请输入体重')
+    }
   },
 
   onChangeFieldBodyWeight(event) {
@@ -132,8 +126,6 @@ Page({
     var firstDay = util.getFirstDay(date_selected)
     var lastDay = util.getLastDay(date_selected)
 
-    // console.log(firstDay + ', ' + date + ', ' + lastDay)
-
     db.collection('body_weight')
       .where({
         _openid: app.globalData.openid,
@@ -143,9 +135,10 @@ Page({
           res.data.forEach(function (obj) {
             obj.date = parseInt(obj.date.slice(-2))
           });
-          // console.log(res.data)
+          console.log(res.data)
           chart.changeData(res.data)
           chart.render()
+          Toast('体重追踪图已更新')
           console.log("render")
         },
         fail: res => {

@@ -4,8 +4,9 @@
   display: flex;
   flex-direction: column;
 }
+
 .bodyweight_chart {
-  position: fixed;
+  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
@@ -19,8 +20,16 @@
   width: 100%;
 }
 
-.enter-weight-btn {
+.bodyweight-field {
   position: absolute;
   top: 60%;
   width: 100%;
+}
+
+.bodyweight-ps {
+  font-size: 20rpx;
+  color: #BAB9BB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
